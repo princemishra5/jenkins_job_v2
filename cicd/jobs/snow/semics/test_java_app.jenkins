@@ -1,0 +1,23 @@
+#!/usr/bin/env groovy
+
+pipelineJob('semics_test_java_app') {
+    displayName('semics_test_java_app')
+parameters {
+        stringParam('Branch','master')
+    }
+
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/princemishra5/test_java_app')
+
+                    }
+                    branches('$Branch')
+                }
+            }
+            scriptPath('build.jenkins')
+        }
+    }
+ }
